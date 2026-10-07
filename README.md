@@ -1,5 +1,7 @@
 # Minimal Keyboard ⌨️
 
+<img width="355" height="235" alt="image" src="https://github.com/user-attachments/assets/000aaaf5-947b-4996-b8dc-6506b24a5221" />
+
 A visually stunning, high-fidelity interactive mechanical keyboard simulator built using modern, vanilla web technologies. Inspired by minimal sleek setups, this project maps physical keyboard inputs and virtual clicks into fully responsive neon glow animations accompanied by real-time synthesized mechanical switch sounds.
 
 ---
