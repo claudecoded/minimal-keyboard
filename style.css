@@ -1,0 +1,106 @@
+:root {
+    --bg-color: #1e1e24;
+    --keyboard-bg: #141416;
+    --key-default: #ffffff;
+    --orange-glow: #ff9f43;
+    --purple-glow: #a55eea;
+    --blue-glow: #45aaf2;
+    --yellow-glow: #fed330;
+    --green-glow: #26de81;
+    --pink-glow: #ef5777;
+    --cyan-glow: #00d2d3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.keyboard-container {
+    background-color: var(--keyboard-bg);
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+/* Base Key Styling */
+.key {
+    width: 24px;
+    height: 24px;
+    background-color: var(--key-default);
+    border-radius: 50%;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+
+/* Custom Widths for Special Keys */
+.wide-backspace { width: 56px; border-radius: 12px; }
+.wide-tab { width: 44px; border-radius: 12px; }
+.wide-backslash { width: 36px; border-radius: 12px; }
+.wide-caps { width: 52px; border-radius: 12px; }
+.wide-enter { width: 62px; border-radius: 12px; }
+.wide-shift { width: 78px; border-radius: 12px; }
+.space { width: 190px; border-radius: 12px; }
+
+/* Active Neon State */
+.key.active {
+    background-color: transparent !important;
+    transform: scale(0.95);
+}
+
+/* Neon Glow Color Mapping */
+.key.orange.active {
+    border: 2px solid var(--orange-glow);
+    box-shadow: 0 0 15px var(--orange-glow), inset 0 0 10px var(--orange-glow);
+}
+
+.key.purple.active {
+    border: 2px solid var(--purple-glow);
+    box-shadow: 0 0 15px var(--purple-glow), inset 0 0 10px var(--purple-glow);
+}
+
+.key.blue.active {
+    border: 2px solid var(--blue-glow);
+    box-shadow: 0 0 15px var(--blue-glow), inset 0 0 10px var(--blue-glow);
+}
+
+.key.yellow.active {
+    border: 2px solid var(--yellow-glow);
+    box-shadow: 0 0 15px var(--yellow-glow), inset 0 0 10px var(--yellow-glow);
+}
+
+.key.green.active {
+    border: 2px solid var(--green-glow);
+    box-shadow: 0 0 15px var(--green-glow), inset 0 0 10px var(--green-glow);
+}
+
+.key.pink.active {
+    border: 2px solid var(--pink-glow);
+    box-shadow: 0 0 15px var(--pink-glow), inset 0 0 10px var(--pink-glow);
+}
+
+/* Default Keys Active State */
+.key:not(.orange):not(.purple):not(.blue):not(.yellow):not(.green):not(.pink).active {
+    border: 2px solid var(--cyan-glow);
+    box-shadow: 0 0 15px var(--cyan-glow), inset 0 0 10px var(--cyan-glow);
+}
