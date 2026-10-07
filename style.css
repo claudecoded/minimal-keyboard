@@ -1,7 +1,12 @@
+/* ==========================================================================
+   1. VARIABLES & DESIGN TOKENS
+   ========================================================================== */
 :root {
     --bg-color: #1e1e24;
     --keyboard-bg: #141416;
     --key-default: #ffffff;
+    
+    /* Neon Glow Colors (Identical to the video palette) */
     --orange-glow: #ff9f43;
     --purple-glow: #a55eea;
     --blue-glow: #45aaf2;
@@ -11,6 +16,9 @@
     --cyan-glow: #00d2d3;
 }
 
+/* ==========================================================================
+   2. GLOBAL RESETS & BASE LAYOUT
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -23,13 +31,17 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: var(--bg-color);
+    overflow: hidden;
 }
 
+/* ==========================================================================
+   3. KEYBOARD CONTAINER
+   ========================================================================== */
 .keyboard-container {
     background-color: var(--keyboard-bg);
     padding: 30px;
     border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 .keyboard {
@@ -43,64 +55,77 @@ body {
     gap: 12px;
 }
 
-/* Base Key Styling */
+/* ==========================================================================
+   4. CORE KEY STYLING & FADE-OUT EFFECT
+   ========================================================================== */
 .key {
     width: 24px;
     height: 24px;
     background-color: var(--key-default);
     border-radius: 50%;
-    transition: all 0.1s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 transparent, inset 0 0 0 transparent;
     cursor: pointer;
+    
+    /* 
+       CRITICAL: Smooth transition back to the default state (Fade-Out effect).
+       This mimics the neon light cooling down gradually just like the video.
+    */
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.1s ease;
 }
 
-/* Custom Widths for Special Keys */
+/* Custom Widths & Capsule Shapes for Special Layout Keys */
 .wide-backspace { width: 56px; border-radius: 12px; }
-.wide-tab { width: 44px; border-radius: 12px; }
+.wide-tab       { width: 44px; border-radius: 12px; }
 .wide-backslash { width: 36px; border-radius: 12px; }
-.wide-caps { width: 52px; border-radius: 12px; }
-.wide-enter { width: 62px; border-radius: 12px; }
-.wide-shift { width: 78px; border-radius: 12px; }
-.space { width: 190px; border-radius: 12px; }
+.wide-caps      { width: 52px; border-radius: 12px; }
+.wide-enter     { width: 62px; border-radius: 12px; }
+.wide-shift     { width: 78px; border-radius: 12px; }
+.space          { width: 190px; border-radius: 12px; }
 
-/* Active Neon State */
+/* ==========================================================================
+   5. ACTIVE NEON STATES (INSTANT FADE-IN)
+   ========================================================================== */
 .key.active {
     background-color: transparent !important;
-    transform: scale(0.95);
+    transform: scale(0.92);
+    /* Disables transitions on press so the light turns on instantly */
+    transition: all 0s; 
 }
 
-/* Neon Glow Color Mapping */
+/* Neon Glow Color Mappings with dual-layer shadows for intense bloom */
 .key.orange.active {
-    border: 2px solid var(--orange-glow);
-    box-shadow: 0 0 15px var(--orange-glow), inset 0 0 10px var(--orange-glow);
+    border-color: var(--orange-glow);
+    box-shadow: 0 0 15px var(--orange-glow), inset 0 0 8px var(--orange-glow);
 }
 
 .key.purple.active {
-    border: 2px solid var(--purple-glow);
-    box-shadow: 0 0 15px var(--purple-glow), inset 0 0 10px var(--purple-glow);
+    border-color: var(--purple-glow);
+    box-shadow: 0 0 15px var(--purple-glow), inset 0 0 8px var(--purple-glow);
 }
 
 .key.blue.active {
-    border: 2px solid var(--blue-glow);
-    box-shadow: 0 0 15px var(--blue-glow), inset 0 0 10px var(--blue-glow);
+    border-color: var(--blue-glow);
+    box-shadow: 0 0 15px var(--blue-glow), inset 0 0 8px var(--blue-glow);
 }
 
 .key.yellow.active {
-    border: 2px solid var(--yellow-glow);
-    box-shadow: 0 0 15px var(--yellow-glow), inset 0 0 10px var(--yellow-glow);
+    border-color: var(--yellow-glow);
+    box-shadow: 0 0 15px var(--yellow-glow), inset 0 0 8px var(--yellow-glow);
 }
 
 .key.green.active {
-    border: 2px solid var(--green-glow);
-    box-shadow: 0 0 15px var(--green-glow), inset 0 0 10px var(--green-glow);
+    border-color: var(--green-glow);
+    box-shadow: 0 0 15px var(--green-glow), inset 0 0 8px var(--green-glow);
 }
 
 .key.pink.active {
-    border: 2px solid var(--pink-glow);
-    box-shadow: 0 0 15px var(--pink-glow), inset 0 0 10px var(--pink-glow);
+    border-color: var(--pink-glow);
+    box-shadow: 0 0 15px var(--pink-glow), inset 0 0 8px var(--pink-glow);
 }
 
-/* Default Keys Active State */
+/* Default White Keys Glow (Turns Cyan/Teal when pressed) */
 .key:not(.orange):not(.purple):not(.blue):not(.yellow):not(.green):not(.pink).active {
-    border: 2px solid var(--cyan-glow);
-    box-shadow: 0 0 15px var(--cyan-glow), inset 0 0 10px var(--cyan-glow);
+    border-color: var(--cyan-glow);
+    box-shadow: 0 0 15px var(--cyan-glow), inset 0 0 8px var(--cyan-glow);
 }
